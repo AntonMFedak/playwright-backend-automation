@@ -45,46 +45,54 @@ const expectedData = [
     }
 ];
 
-test('Validate Attributes', async ({ request }) => {
+let responseBody = [];
+
+test('Validate Access to Attributes Page', async ({ request }) => {
   const response = await request.get(
     'https://adventurers-guild-api.vercel.app/api/attributes',
   );
 
   expect(response.status()).toBe(200);
 
-  const responseBody = await response.json();
+  responseBody = await response.json();
 
-/*   expect(responseBody[0].id).toBe(1);
+  /* expect(responseBody[0].id).toBe(1);
   expect(responseBody[0].name).toBe('Strength');
   expect(responseBody[0].shortname).toBe('STR');
   expect(responseBody[0].description).toBe(
     'Measures physical power, carrying capacity, and effectiveness in brute-force actions such as lifting, pushing, and melee attacks.',
   );
   expect(responseBody[0].skills[0]).toBe('Athletics'); */
-
-  responseBody.forEach((item, index) => {
-
-  test(`${item.name} - id`, async () => {
-      expect(item.id).toBe(expectedData[index].id);
-  });
-
-  test(`${item.name} - name`, async () => {
-      expect(item.name).toBe(expectedData[index].name);
-  });
-
-    test(`${item.name} - shortname`, async () => {
-        expect(item.shortname).toBe(expectedData[index].shortname);
-    });
-
-    test(`${item.name} - description`, async () => {
-        expect(item.description).toBe(expectedData[index].description);
-    });
-
-    test(`${item.name} - skills`, async () => {
-        expect(item.skills).toEqual(expectedData[index].skills);
-    });
-
 });
+
+test('Validate Attributes ID', async () => {
+  responseBody.forEach((item, index) => {
+    expect(item.id).toBe(expectedData[index].id);
+  });
+});
+
+test('Validate Attributes Name', async () => {
+  responseBody.forEach((item, index) => {
+    expect(item.name).toBe(expectedData[index].name);
+  });
+});
+
+test('Validate Attributes Shortname', async () => {
+  responseBody.forEach((item, index) => {
+    expect(item.shortname).toBe(expectedData[index].shortname);
+  });
+});
+
+test('Validate Attributes Description', async () => {
+  responseBody.forEach((item, index) => {
+    expect(item.description).toBe(expectedData[index].description);
+  });
+});
+
+test('Validate Attributes Skills', async () => {
+  responseBody.forEach((item, index) => {
+    expect(item.skills).toEqual(expectedData[index].skills);
+  });
 });
 
 
