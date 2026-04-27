@@ -45,7 +45,7 @@ const expectedData = [
     }
 ];
 
-let responseBody = [];
+let responseBody: any[] = [];
 
 test('Validate Access to Attributes Page', async ({ request }) => {
   const response = await request.get(
