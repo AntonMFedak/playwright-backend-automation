@@ -89,6 +89,7 @@ test('Validate Attributes Description', async () => {
   });
 });
 
+//Last test
 test('Validate Attributes Skills', async () => {
   responseBody.forEach((item, index) => {
     expect(item.skills).toEqual(expectedData[index].skills);
