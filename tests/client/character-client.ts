@@ -7,6 +7,16 @@ export type CreateCharacterData = {
     backgroundId?: number
 };
 
+export async function getListOfCharacters(
+    request: APIRequestContext,
+    token: string
+) {
+    const response = await request.get('/api/characters', {
+        headers: {Authorization: `Bearer ${token}`}
+    });
+    return response;
+}
+
 export async function createCharacter(
     request: APIRequestContext,
     token: string,
