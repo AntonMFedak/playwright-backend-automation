@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { getToken } from './client/token-client';
-import { getCharacterById, getListOfCharacters } from './client/character-client';
+import { deleteCharacter, getCharacterById, getListOfCharacters } from './client/character-client';
 
 let token: string = '';
 let characterIDs: number[] = [];
@@ -24,9 +24,11 @@ test.describe.serial('Get List of Characters', () => {
         expect(charactersResponse.status()).toBe(200);
 
         const listOfCharacters = await charactersResponse.json();
+        console.log(listOfCharacters);
 
         expect(listOfCharacters).not.toBeNull();
 
+        //Get the IDs of the characters to be used in the next test
         listOfCharacters.forEach((character: any) => {
             expect(character.id).not.toBeNull();
             characterIDs.push(character.id);
@@ -49,5 +51,17 @@ test.describe.serial('Get List of Characters', () => {
             console.log(character);
             expect(character.id).toBe(characterId);
         }
+    })
+
+    test('Delete Character', async ({ request }) => {
+
+        expect(characterIDs.length).toBeGreaterThan(0);
+
+        const deleteResponse = await deleteCharacter(
+            request,
+            token,
+            characterIDs[characterIDs.length - 1]
+        );
+        expect(deleteResponse.status()).toBe(204);
     })
 });

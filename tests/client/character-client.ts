@@ -39,3 +39,14 @@ export async function getCharacterById(
     });
     return response;
 }
+
+export async function deleteCharacter(
+    request: APIRequestContext,
+    token: string,
+    characterId: number
+) {
+    const response = await request.delete(`/api/characters/${characterId}`, {
+        headers: {Authorization: `Bearer ${token}`}
+    });
+    return response;
+}
