@@ -62,6 +62,6 @@ test.describe.serial('Get List of Characters', () => {
             token,
             characterIDs[characterIDs.length - 1]
         );
-        expect(deleteResponse.status()).toBe(204);
+        expect(deleteResponse.status()).toBe(200);
     })
 });
