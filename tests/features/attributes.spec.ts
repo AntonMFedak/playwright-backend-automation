@@ -1,13 +1,15 @@
 import { test, expect } from '@playwright/test';
-import { attributesSampleData } from './data/validate-attributes-data';
-import { getAttributes } from './client/attributes-client';
+import { getAttributes } from '../client/attributes-client';
+import { expectStatusCodeOk } from '../snippets/status-code-validators';
+import { attributesSampleData } from '../data/validate-attributes-data';
 
 let responseBody: any[] = [];
 
 test('Validate Access to Attributes Page', async ({ request }) => {
   const attributesResponse = await getAttributes(request);
 
-  expect(attributesResponse.status()).toBe(200);
+  //expect(attributesResponse.status()).toBe(200);
+  await expectStatusCodeOk(attributesResponse);
 
   responseBody = await attributesResponse.json();
 });

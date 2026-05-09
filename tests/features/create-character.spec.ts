@@ -1,21 +1,24 @@
 import { test, expect } from '@playwright/test';
-import { getToken } from './client/token-client';
-import { createCharacter } from './client/character-client';
-import { BARBARIAN_CHARACTER_DATA } from './data/create-character-data';
+//import { getToken } from './client/token-client';
+import { authState } from '../client/auth-state';
+import { createCharacter } from '../client/character-client';
+import { BARBARIAN_CHARACTER_DATA } from '../data/create-character-data';
 
-let token: string = '';
+//let token: string = '';
 
 // This forces tests in this file to run one after another
 //test.describe.configure({ mode: 'serial' });
 
-test.describe.serial('Create Character', () => {
+//test.describe.serial('Create Character', () => {
 
-    test.beforeAll(async ({ request }) => {
+    /* test.beforeAll(async ({ request }) => {
         // Identification is needed to access the API
         token = await getToken(request);
-    });
+    }); */
 
     test('Create Barbarian Character Draft', async ({ request }) => {
+        const token = await authState.authentication(request);
+
         const characterResponse = await createCharacter(
             request,
             token,
@@ -29,4 +32,4 @@ test.describe.serial('Create Character', () => {
         expect(character.speciesId).toBe(BARBARIAN_CHARACTER_DATA.speciesId);
         expect(character.backgroundId).toBe(BARBARIAN_CHARACTER_DATA.backgroundId);
     })
-});
+//});

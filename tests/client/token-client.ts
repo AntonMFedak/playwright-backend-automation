@@ -1,12 +1,23 @@
-import { APIRequestContext } from "@playwright/test";
+import { APIRequestContext, APIResponse } from "@playwright/test";
 
-export async function getToken(request: APIRequestContext) {
+export async function getToken(request: APIRequestContext): Promise<APIResponse> {
     const tokenResponse = await request.post('/api/auth/token', {
         data: {
-            username: 'antonf',
-            password: 'K8r@N5t!W2m#C7qP'
+            username: process.env.API_USERNAME,
+            password: process.env.API_PASSWORD
         }
     });
-    const token = (await tokenResponse.json()).token;
-    return token;
+    //const token: string = (await tokenResponse.json()).token;
+    return tokenResponse;
+}
+
+export async function getTokenBadRequest(request: APIRequestContext): Promise<APIResponse> {
+    const tokenResponse = await request.patch('/api/auth/token', {
+        data: {
+            username: process.env.API_USERNAME,
+            password: process.env.API_PASSWORD
+        }
+    });
+    //const token: string = (await tokenResponse.json()).token;
+    return tokenResponse;
 }
