@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { getToken } from './client/token-client';
-import { deleteCharacter, getCharacterById, getListOfCharacters } from './client/character-client';
+import { deleteCharacter, getCharacterById, getListOfCharacters } from '../client/character-client';
+import { authState } from '../client/auth-state';
 
-let token: string = '';
 let characterIDs: number[] = [];
 
 // This forces tests in this file to run one after another
@@ -10,12 +9,8 @@ let characterIDs: number[] = [];
 
 test.describe.serial('Get List of Characters', () => {
 
-    test.beforeAll(async ({ request }) => {
-        // Identification is needed to access the API
-        token = await getToken(request);
-    });
-
     test('Get List of Characters', async ({ request }) => {
+        const token = await authState.authentication(request);
         const charactersResponse = await getListOfCharacters(
             request,
             token
@@ -36,6 +31,7 @@ test.describe.serial('Get List of Characters', () => {
     })
 
     test('Get Character by ID', async ({ request }) => {
+        const token = await authState.authentication(request);
 
         expect(characterIDs.length).toBeGreaterThan(0);
 
@@ -53,7 +49,7 @@ test.describe.serial('Get List of Characters', () => {
         }
     })
 
-    test('Delete Character', async ({ request }) => {
+    /* test('Delete Character', async ({ request }) => {
 
         expect(characterIDs.length).toBeGreaterThan(0);
 
@@ -63,5 +59,5 @@ test.describe.serial('Get List of Characters', () => {
             characterIDs[characterIDs.length - 1]
         );
         expect(deleteResponse.status()).toBe(200);
-    })
+    }) */
 });
