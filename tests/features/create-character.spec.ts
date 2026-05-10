@@ -2,9 +2,10 @@ import { test, expect } from '@playwright/test';
 import { authState } from '../client/auth-state';
 import { createCharacter } from '../client/character-client';
 import { BARBARIAN_CHARACTER_DATA, ROGUE_CHARACTER_DATA } from '../data/create-character-data';
+import { expectStatusCodeOk } from '../snippets/status-code-validators';
 
 
-test('Create Rogue Character', async ({ request }) => {
+test('Create Rogue Character', {tag: ['@create', '@character', '@rogue']}, async ({ request }) => {
     const token = await authState.authentication(request);
 
     const characterResponse = await createCharacter(
@@ -12,6 +13,9 @@ test('Create Rogue Character', async ({ request }) => {
         token,
         ROGUE_CHARACTER_DATA,
     );
+
+    await expectStatusCodeOk(characterResponse);
+    
     const character = await characterResponse.json();
 
     expect(character.id).not.toBeNull();
@@ -21,7 +25,7 @@ test('Create Rogue Character', async ({ request }) => {
     expect(character.backgroundId).toBe(ROGUE_CHARACTER_DATA.backgroundId);
 })
 
-test('Create Barbarian Character', async ({ request }) => {
+test('Create Barbarian Character', {tag: ['@create', '@character', '@barbarian']}, async ({ request }) => {
     const token = await authState.authentication(request);
 
     const characterResponse = await createCharacter(
@@ -29,6 +33,9 @@ test('Create Barbarian Character', async ({ request }) => {
         token,
         BARBARIAN_CHARACTER_DATA,
     );
+
+    await expectStatusCodeOk(characterResponse);
+    
     const character = await characterResponse.json();
 
     expect(character.id).not.toBeNull();
