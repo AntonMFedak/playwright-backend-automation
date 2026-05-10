@@ -1,4 +1,6 @@
-export const attributesSampleData = [
+import { attributesSchema } from "../schemas/attributes-schema";
+
+export const attributesSampleData: attributesSchema = [
     {
         id: 1,
         name: "Strength",

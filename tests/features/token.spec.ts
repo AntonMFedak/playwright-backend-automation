@@ -2,7 +2,7 @@ import { APIResponse, test } from "@playwright/test";
 import { getToken, getTokenBadRequest } from "../client/token-client";
 import { expectTokenBeString, expectTokenNotEmpty, expectTokenToBeNull } from "../snippets/token-validators";
 import { authState } from "../client/auth-state";
-import { expectStatusCodeBadRequest, expectStatusCodeMethodNotAllowed, expectStatusCodeOk } from "../snippets/status-code-validators";
+import { expectStatusCodeMethodNotAllowed, expectStatusCodeOk } from "../snippets/status-code-validators";
 
 test('Retrieve and validate token with POST method', {tag: ['@token', '@post']}, async ({ request }) => {
     //let token: string | null = await getToken(request);

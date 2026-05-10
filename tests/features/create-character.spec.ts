@@ -21,7 +21,7 @@ test('Create Rogue Character', async ({ request }) => {
     expect(character.backgroundId).toBe(ROGUE_CHARACTER_DATA.backgroundId);
 })
 
-test('Create Barbarian Character Draft', async ({ request }) => {
+test('Create Barbarian Character', async ({ request }) => {
     const token = await authState.authentication(request);
 
     const characterResponse = await createCharacter(

@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { deleteCharacter, getCharacterById, getListOfCharacters } from '../client/character-client';
 import { authState } from '../client/auth-state';
+import { expectStatusCodeOk } from '../snippets/status-code-validators';
 
 let characterIDs: number[] = [];
 
@@ -16,7 +17,7 @@ test.describe.serial('Get List of Characters', () => {
             token
         );
 
-        expect(charactersResponse.status()).toBe(200);
+        await expectStatusCodeOk(charactersResponse);
 
         const listOfCharacters = await charactersResponse.json();
         console.log(listOfCharacters);
@@ -30,7 +31,8 @@ test.describe.serial('Get List of Characters', () => {
         });
     })
 
-    test('Get Character by ID', async ({ request }) => {
+    if(characterIDs.length > 0){
+        test('Get Character by ID', async ({ request }) => {
         const token = await authState.authentication(request);
 
         expect(characterIDs.length).toBeGreaterThan(0);
@@ -41,13 +43,19 @@ test.describe.serial('Get List of Characters', () => {
                 token,
                 characterId
             );
-            expect(characterResponse.status()).toBe(200);
+            await expectStatusCodeOk(characterResponse);
 
             const character = await characterResponse.json();
             console.log(character);
             expect(character.id).toBe(characterId);
         }
-    })
+        })
+    } else {
+        test.fail('No characters found to test Get Character by ID', async ({ request }) => {
+            const token = await authState.authentication(request);
+            expect(characterIDs.length).toBeGreaterThan(0);
+        });
+    }
 
     /* test('Delete Character', async ({ request }) => {
 

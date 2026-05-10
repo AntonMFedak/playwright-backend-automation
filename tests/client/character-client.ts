@@ -1,16 +1,10 @@
 import { APIRequestContext } from "@playwright/test";
-
-export type CreateCharacterData = {
-    name: string,
-    classId?: number,
-    speciesId?: number,
-    backgroundId?: number
-};
+import { CreateCharacterSchema } from "../schemas/create-character-schema";
 
 export async function createCharacter(
     request: APIRequestContext,
     token: string,
-    data: CreateCharacterData
+    data: CreateCharacterSchema
 ) {
     const response = await request.post('/api/characters', {
         headers: {Authorization: `Bearer ${token}`},

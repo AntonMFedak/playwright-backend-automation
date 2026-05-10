@@ -1,45 +1,18 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { getAttributes } from '../client/attributes-client';
 import { expectStatusCodeOk } from '../snippets/status-code-validators';
 import { attributesSampleData } from '../data/validate-attributes-data';
+import { expectValidAttributesResponse, expectValidAttributesSchema } from '../snippets/attributes-validators';
 
-let responseBody: any[] = [];
+test.describe.serial('Validate Attributes', {tag: '@attributes'}, async () => {
+  test('Validate Attributes Type, Schema and Data', {tag: []}, async ({ request }) => {
+    const attributesResponse = await getAttributes(request);
 
-test('Validate Access to Attributes Page', async ({ request }) => {
-  const attributesResponse = await getAttributes(request);
+    await expectStatusCodeOk(attributesResponse);
 
-  //expect(attributesResponse.status()).toBe(200);
-  await expectStatusCodeOk(attributesResponse);
+    const attributes = await attributesResponse.json();
 
-  responseBody = await attributesResponse.json();
-});
-
-test('Validate Attributes ID', async () => {
-  responseBody.forEach((item, index) => {
-    expect(item.id).toBe(attributesSampleData[index].id);
+    await expectValidAttributesSchema(attributes, attributesSampleData);
+    await expectValidAttributesResponse(attributes, attributesSampleData);
   });
-});
-
-test('Validate Attributes Name', async () => {
-  responseBody.forEach((item, index) => {
-    expect(item.name).toBe(attributesSampleData[index].name);
-  });
-});
-
-test('Validate Attributes Shortname', async () => {
-  responseBody.forEach((item, index) => {
-    expect(item.shortname).toBe(attributesSampleData[index].shortname);
-  });
-});
-
-test('Validate Attributes Description', async () => {
-  responseBody.forEach((item, index) => {
-    expect(item.description).toBe(attributesSampleData[index].description);
-  });
-});
-
-test('Validate Attributes Skills', async () => {
-  responseBody.forEach((item, index) => {
-    expect(item.skills).toEqual(attributesSampleData[index].skills);
-  });  
 });
