@@ -4,6 +4,7 @@ import { createCharacter } from '../client/character-client';
 import { BARBARIAN_CHARACTER_DATA, ROGUE_CHARACTER_DATA } from '../data/create-character-data';
 import { expectStatusCodeOk } from '../snippets/status-code-validators';
 
+test.describe.configure({ mode: 'serial' });
 
 test('Create Rogue Character', {tag: ['@create', '@character', '@rogue']}, async ({ request }) => {
     const token = await authState.authentication(request);
@@ -35,7 +36,7 @@ test('Create Barbarian Character', {tag: ['@create', '@character', '@barbarian']
     );
 
     await expectStatusCodeOk(characterResponse);
-    
+
     const character = await characterResponse.json();
 
     expect(character.id).not.toBeNull();
