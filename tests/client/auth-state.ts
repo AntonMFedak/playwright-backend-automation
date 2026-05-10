@@ -6,6 +6,8 @@ class AuthState {
     private token: string | null = null;
 
     async authentication(request: APIRequestContext): Promise<string> {
+        console.log('Username check:', process.env.API_USERNAME ? 'LOADED' : 'MISSING');
+        console.log('Password check:', process.env.API_PASSWORD ? 'LOADED' : 'MISSING');
         if (!this.token) {
             // 1. Get the response exactly like your working test
             const response = await getToken(request);
