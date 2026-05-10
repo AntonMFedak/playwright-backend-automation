@@ -8,6 +8,9 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      API_USERNAME: "${{ secrets.API_USERNAME }}"
+      API_PASSWORD: "${{ secrets.API_PASSWORD }}"
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
