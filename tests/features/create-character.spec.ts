@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { authState } from '../client/auth-state';
 import { createCharacter } from '../client/character-client';
-import { BARBARIAN_CHARACTER_DATA, ROGUE_CHARACTER_DATA } from '../data/create-character-data';
+import { BARBARIAN_CHARACTER_DATA, ROGUE_CHARACTER_DATA } from '../data/character-data';
 import { expectStatusCodeCreated } from '../snippets/status-code-validators';
 
 test.describe.configure({ mode: 'serial' });

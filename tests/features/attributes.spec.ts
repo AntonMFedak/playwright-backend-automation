@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { getAttributes } from '../client/attributes-client';
 import { expectStatusCodeOk } from '../snippets/status-code-validators';
-import { attributesSampleData } from '../data/validate-attributes-data';
+import { attributesSampleData } from '../data/attributes-data';
 import { expectValidAttributesResponse, expectValidAttributesSchema } from '../snippets/attributes-validators';
 
 test.describe.serial('Validate Attributes', {tag: '@attributes'}, async () => {
