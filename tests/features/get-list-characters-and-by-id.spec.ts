@@ -2,12 +2,13 @@ import { test, expect } from '@playwright/test';
 import { deleteCharacter, getCharacterById, getListOfCharacters } from '../client/character-client';
 import { authState } from '../client/auth-state';
 import { expectStatusCodeOk } from '../snippets/status-code-validators';
+import { Tags } from '../data/test-tags';
 
 let characterIDs: number[] = [];
 
 test.describe.serial('Get List of Characters', () => {
 
-    test('Get List of Characters', {tag: ['@get-list', '@character']}, async ({ request }) => {
+    test('Get List of Characters', {tag: [Tags.GET_LIST, Tags.CHARACTER]}, async ({ request }) => {
         const token = await authState.authentication(request);
         const charactersResponse = await getListOfCharacters(
             request,
@@ -27,7 +28,7 @@ test.describe.serial('Get List of Characters', () => {
         });
     })
 
-    test('Get Character by ID', {tag: ['@get-detail', '@character']}, async ({ request }) => {
+    test('Get Character by ID', {tag: [Tags.GET_DETAIL, Tags.CHARACTER]}, async ({ request }) => {
 
         test.fail(characterIDs.length === 0, 'No characters found to test Get Character by ID');
             

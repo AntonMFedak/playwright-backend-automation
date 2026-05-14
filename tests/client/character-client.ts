@@ -1,5 +1,5 @@
 import { APIRequestContext } from "@playwright/test";
-import { CreateCharacterSchema } from "../schemas/create-character-schema";
+import { CreateCharacterSchema } from "../schemas/character-schema";
 
 export async function createCharacter(
     request: APIRequestContext,

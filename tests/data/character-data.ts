@@ -1,4 +1,4 @@
-import { CreateCharacterSchema } from "../schemas/create-character-schema";
+import { CreateCharacterSchema } from "../schemas/character-schema";
 
 export const ROGUE_CHARACTER_DATA: CreateCharacterSchema = {
     name: "Chivorog Ikadef",

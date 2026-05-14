@@ -3,6 +3,7 @@ import { authState } from '../client/auth-state';
 import { createCharacter } from '../client/character-client';
 import { BARBARIAN_CHARACTER_DATA, ROGUE_CHARACTER_DATA } from '../data/character-data';
 import { expectStatusCodeCreated } from '../snippets/status-code-validators';
+import { expectValidCreateCharacterDataResponse, expectValidCreateCharacterSchema } from '../snippets/character-validators';
 
 test.describe.configure({ mode: 'serial' });
 
@@ -16,14 +17,9 @@ test('Create Rogue Character', {tag: ['@create', '@character', '@rogue']}, async
     );
 
     await expectStatusCodeCreated(characterResponse);
-    
-    const character = await characterResponse.json();
+    await expectValidCreateCharacterSchema(characterResponse, ROGUE_CHARACTER_DATA);
+    await expectValidCreateCharacterDataResponse(characterResponse, ROGUE_CHARACTER_DATA);
 
-    expect(character.id).not.toBeNull();
-    expect(character.name).toBe(ROGUE_CHARACTER_DATA.name);
-    expect(character.classId).toBe(ROGUE_CHARACTER_DATA.classId);
-    expect(character.speciesId).toBe(ROGUE_CHARACTER_DATA.speciesId);
-    expect(character.backgroundId).toBe(ROGUE_CHARACTER_DATA.backgroundId);
 })
 
 test('Create Barbarian Character', {tag: ['@create', '@character', '@barbarian']}, async ({ request }) => {
@@ -36,12 +32,7 @@ test('Create Barbarian Character', {tag: ['@create', '@character', '@barbarian']
     );
 
     await expectStatusCodeCreated(characterResponse);
+    await expectValidCreateCharacterSchema(characterResponse, BARBARIAN_CHARACTER_DATA);
+    await expectValidCreateCharacterDataResponse(characterResponse, BARBARIAN_CHARACTER_DATA);
 
-    const character = await characterResponse.json();
-
-    expect(character.id).not.toBeNull();
-    expect(character.name).toBe(BARBARIAN_CHARACTER_DATA.name);
-    expect(character.classId).toBe(BARBARIAN_CHARACTER_DATA.classId);
-    expect(character.speciesId).toBe(BARBARIAN_CHARACTER_DATA.speciesId);
-    expect(character.backgroundId).toBe(BARBARIAN_CHARACTER_DATA.backgroundId);
 })

@@ -78,11 +78,17 @@ npx playwright test
 
 The project uses an enum for tagging to ensure type safety. You can run specific groups:
 ```bash
+# Run token retrieval tests
+npx playwright test --grep "@token"
+
 # Run character creation tests
 npx playwright test --grep "@create"
 
-# Run token retrieval tests
-npx playwright test --grep "@token"
+# Run tests that have BOTH @create and @rogue:
+npx playwright test --grep "(?=.*@create)(?=.*@rogue)"
+
+# Run all tests EXCEPT @delete tests
+npx playwright test --grep-invert "@delete"
 ```
 
 **View HTML Report**
