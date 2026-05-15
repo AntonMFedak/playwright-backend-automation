@@ -3,7 +3,7 @@ import { getAttributes } from '../client/attributes-client';
 import { expectStatusCodeOk } from '../snippets/status-code-validators';
 import { attributesSampleData } from '../data/attributes-data';
 import { expectValidAttributesResponse, expectValidAttributesSchema } from '../snippets/attributes-validators';
-import { Tags } from '../data/test-tags';
+import { Tags } from '../data/enums';
 
 test.describe.serial('Validate Attributes', {tag: Tags.ATTRIBUTES}, async () => {
   test('Validate Attributes Type, Schema and Data', {tag: []}, async ({ request }) => {

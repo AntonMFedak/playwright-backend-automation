@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { deleteCharacter, getCharacterById, getListOfCharacters } from '../client/character-client';
 import { authState } from '../client/auth-state';
 import { expectStatusCodeOk } from '../snippets/status-code-validators';
-import { Tags } from '../data/test-tags';
+import { Tags } from '../data/enums';
 
 let characterIDs: number[] = [];
 

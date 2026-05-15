@@ -3,7 +3,7 @@ import { getToken, getTokenBadRequest } from "../client/token-client";
 import { expectTokenBeString, expectTokenNotEmpty, expectTokenToBeNull } from "../snippets/token-validators";
 import { authState } from "../client/auth-state";
 import { expectStatusCodeMethodNotAllowed, expectStatusCodeOk } from "../snippets/status-code-validators";
-import { Tags } from "../data/test-tags";
+import { Tags } from "../data/enums";
 
 test('Retrieve and validate token with POST method', {tag: [Tags.TOKEN, Tags.POST]}, async ({ request }) => {
     //let token: string | null = await getToken(request);
