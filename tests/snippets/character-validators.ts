@@ -24,3 +24,18 @@ export async function expectValidCreateCharacterDataResponse(createCharacterResp
         expect(receivedCreateCharacterData.backgroundId).toBe(createCharacterData.backgroundId);
     })
 }
+
+export async function expectValidGetListOfCharactersSchema(getListOfCharactersResponse: APIResponse) {
+    await test.step('Validate Get List of Characters response schema', async () => {
+        const responseData = await getListOfCharactersResponse.json();
+        expect(Array.isArray(responseData)).toBeTruthy();
+        if (responseData.length > 0) {
+            const character = responseData[0];
+            expect(character).toHaveProperty('id');
+            expect(character).toHaveProperty('name');
+            expect(character).toHaveProperty('classId');
+            expect(character).toHaveProperty('speciesId');
+            expect(character).toHaveProperty('backgroundId');
+        }
+     });
+}

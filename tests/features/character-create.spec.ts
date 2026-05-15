@@ -6,7 +6,7 @@ import { expectStatusCodeCreated } from '../snippets/status-code-validators';
 import { expectValidCreateCharacterDataResponse, expectValidCreateCharacterSchema } from '../snippets/character-validators';
 import { Tags } from '../data/enums';
 import { CLASS_TAG_MAP } from '../data/mappings';
-import { CreateCharacterSchema } from '../schemas/character-schema';
+import { CreateCharacterSchema, existantCharactersList } from '../schemas/character-schema';
 
 //INDIVIDUAL CHARACTER CREATION TESTS
 /* test.describe.configure({ mode: 'serial' });
@@ -57,9 +57,8 @@ test.describe('Bulk Character Creation', () => {
             const token = await authState.authentication(request);
 
             // Check if character already exists
-            const listOfCharactersResponse = await getListOfCharacters(request, token);
-            const characters: CreateCharacterSchema[] = await listOfCharactersResponse.json();
-            const alreadyExists = characters.some(character => character.name === characterData.name);
+            const existantCharacters: existantCharactersList[] = await JSON.parse(process.env.GLOBAL_CHARACTER_IDS as string);
+            const alreadyExists = existantCharacters.some(character => character.name === characterData.name);
 
             test.skip(alreadyExists, `Character '${characterData.name}' already exists. Skipping creation.`);
 

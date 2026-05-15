@@ -1,4 +1,5 @@
 export enum Tags {
+    GLOBAL_SETUP = '@global-setup',
     TOKEN = '@token',
     GET = '@get',
     POST = '@post',

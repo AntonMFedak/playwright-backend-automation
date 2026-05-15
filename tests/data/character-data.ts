@@ -1,4 +1,4 @@
-import { CreateCharacterSchema } from "../schemas/character-schema";
+import { CreateCharacterSchema, UpdateCharacterAbilityScoresSchema } from "../schemas/character-schema";
 
 /** INDIVIDUAL CHARACTER CREATION DATA **/
 export const ROGUE_CHARACTER_DATA: CreateCharacterSchema = {
@@ -30,3 +30,25 @@ export const CREATE_CHARACTER_DATA: CreateCharacterSchema[] = [
         backgroundId: 16
     }
 ];
+
+/** UPDATE CHARACTER ABILITY SCORES DATA **/
+export const UPDATE_CHARACTER_ABILITY_SCORES_DATA: UpdateCharacterAbilityScoresSchema = {
+    abilityScores: {
+        base: {
+            STR: 10,
+            DEX: 15,
+            CON: 10,
+            INT: 10,
+            WIS: 15,
+            CHA: 10
+        },
+        bonuses: {
+            STR: 0,
+            DEX: 2,
+            CON: 0,
+            INT: 0,
+            WIS: 1,
+            CHA: 0
+        }
+    }
+};
