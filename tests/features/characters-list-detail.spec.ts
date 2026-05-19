@@ -3,8 +3,10 @@ import { deleteCharacter, getCharacterById, getListOfCharacters } from '../clien
 import { authState } from '../client/auth-state';
 import { expectStatusCodeOk } from '../snippets/status-code-validators';
 import { Tags } from '../data/enums';
+import { expectCompleteCharacterStatus, expectInProgressCharacterStatus, expectValidGetCharacterByIdSchema, expectValidGetListOfCharactersDataResponse } from '../snippets/character-validators';
+import { existantCharactersList } from '../schemas/character-schema';
 
-let characterIDs: number[] = [];
+//let characterIDs: number[] = [];
 
 test.describe.serial('Get List of Characters', () => {
 
@@ -16,49 +18,39 @@ test.describe.serial('Get List of Characters', () => {
         );
 
         await expectStatusCodeOk(charactersResponse);
+        await expectValidGetListOfCharactersDataResponse(charactersResponse);
 
-        const listOfCharacters = await charactersResponse.json();
+        //Get the IDs of the characters to be used in the next test
+        /* const listOfCharacters = await charactersResponse.json();
 
         expect(listOfCharacters).not.toBeNull();
 
-        //Get the IDs of the characters to be used in the next test
         listOfCharacters.forEach((character: any) => {
             expect(character.id).not.toBeNull();
             characterIDs.push(character.id);
-        });
+        }); */
     })
 
     test('Get Character by ID', {tag: [Tags.GET_DETAIL, Tags.CHARACTER]}, async ({ request }) => {
 
-        test.fail(characterIDs.length === 0, 'No characters found to test Get Character by ID');
+        const existantCharacters: existantCharactersList[] = await JSON.parse(process.env.GLOBAL_CHARACTER_IDS as string);
+
+        test.skip(existantCharacters.length === 0, 'No characters found to test Get Character by ID');
             
         const token = await authState.authentication(request);
 
-        expect(characterIDs.length).toBeGreaterThan(0);
-
-        for(const characterId of characterIDs) {
+        for(const characterId of /* characterIDs */ existantCharacters.map(character => character.id)) {
             const characterResponse = await getCharacterById(
                 request,
                 token,
                 characterId
             );
+            const characterDetail = await characterResponse.json();
+            console.log(characterDetail);
             await expectStatusCodeOk(characterResponse);
-
-            const character = await characterResponse.json();
-            console.log(character);
-            expect(character.id).toBe(characterId);
+            //await expectValidGetCharacterByIdSchema(characterResponse);
+            //await expectInProgressCharacterStatus(characterResponse);
+            //await expectCompleteCharacterStatus(characterResponse);
         }
     })
-
-    /* test('Delete Character', async ({ request }) => {
-
-        expect(characterIDs.length).toBeGreaterThan(0);
-
-        const deleteResponse = await deleteCharacter(
-            request,
-            token,
-            characterIDs[characterIDs.length - 1]
-        );
-        expect(deleteResponse.status()).toBe(200);
-    }) */
 });

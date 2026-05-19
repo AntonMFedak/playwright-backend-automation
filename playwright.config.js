@@ -22,7 +22,7 @@ export default defineConfig({
   },
 
   projects: [
-    // 1. Define the Setup Project
+    // Setup Project
     {
       name: 'setup',
       // Looks for the setup file

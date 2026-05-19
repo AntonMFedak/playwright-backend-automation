@@ -15,5 +15,5 @@ export const CLASS_TAG_MAP: Record<number, string> = {
     [CharacterClasses.SORCERER]: Tags.SORCERER,
     [CharacterClasses.WARLOCK]: Tags.WARLOCK,
     [CharacterClasses.WIZARD]: Tags.WIZARD,
-    0: 'unknown' // Default tag for unknown class IDs
+    0: Tags.UNKNOWN_CLASS // Default tag for unknown class IDs
 };

@@ -1,0 +1,376 @@
+{
+    "id": 3465,
+    "name": "FEDAK",
+    "classId": 1,
+    "speciesId": 8,
+    "backgroundId": 16,
+    "level": 1,
+    "abilityScores": null,
+    "currency": null,
+    "skillProficiencies": [
+        "Athletics",
+        "Intimidation"
+    ],
+    "status": "in_progress",
+    "missingFields": [],
+    "pendingChoices": [
+        "classEquipmentSelection",
+        "backgroundEquipmentSelection"
+    ],
+    "abilityModifiers": null,
+    "armorClass": {
+        "total": 10,
+        "base": 10,
+        "dexModifierApplied": 0,
+        "classBonus": 0,
+        "shieldBonus": 0,
+        "sources": [
+            {
+                "name": "Base AC",
+                "type": "base",
+                "value": 10
+            }
+        ]
+    },
+    "weaponAttacks": [],
+    "hitPoints": null,
+    "savingThrows": [],
+    "initiative": null,
+    "passivePerception": null,
+    "movement": {
+        "baseSpeed": 30,
+        "unit": "ft",
+        "sources": [
+            {
+                "type": "species",
+                "name": "Orc",
+                "value": 30
+            }
+        ]
+    },
+    "inventoryWeight": {
+        "total": 0,
+        "unit": "lb",
+        "sources": []
+    },
+    "spellcastingSummary": {
+        "canCastSpells": false,
+        "ability": null,
+        "abilityModifier": null,
+        "spellSaveDc": null,
+        "spellAttackBonus": null,
+        "selectedSpellsCount": 0,
+        "selectedCantripsCount": 0
+    },
+    "spellSlots": [],
+    "selectedSpells": [],
+    "skills": [
+        {
+            "name": "Athletics",
+            "ability": "STR",
+            "isProficient": true,
+            "abilityModifier": 0,
+            "proficiencyBonus": 2,
+            "total": 2
+        },
+        {
+            "name": "Acrobatics",
+            "ability": "DEX",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        },
+        {
+            "name": "Sleight of Hand",
+            "ability": "DEX",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        },
+        {
+            "name": "Stealth",
+            "ability": "DEX",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        },
+        {
+            "name": "Arcana",
+            "ability": "INT",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        },
+        {
+            "name": "History",
+            "ability": "INT",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        },
+        {
+            "name": "Investigation",
+            "ability": "INT",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        },
+        {
+            "name": "Nature",
+            "ability": "INT",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        },
+        {
+            "name": "Religion",
+            "ability": "INT",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        },
+        {
+            "name": "Animal Handling",
+            "ability": "WIS",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        },
+        {
+            "name": "Insight",
+            "ability": "WIS",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        },
+        {
+            "name": "Medicine",
+            "ability": "WIS",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        },
+        {
+            "name": "Perception",
+            "ability": "WIS",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        },
+        {
+            "name": "Survival",
+            "ability": "WIS",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        },
+        {
+            "name": "Deception",
+            "ability": "CHA",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        },
+        {
+            "name": "Intimidation",
+            "ability": "CHA",
+            "isProficient": true,
+            "abilityModifier": 0,
+            "proficiencyBonus": 2,
+            "total": 2
+        },
+        {
+            "name": "Performance",
+            "ability": "CHA",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        },
+        {
+            "name": "Persuasion",
+            "ability": "CHA",
+            "isProficient": false,
+            "abilityModifier": 0,
+            "proficiencyBonus": 0,
+            "total": 0
+        }
+    ],
+    "abilityScoreRules": {
+        "source": "background",
+        "allowedChoices": [
+            "STR",
+            "DEX",
+            "CON"
+        ],
+        "bonusRules": {
+            "mode": "standard_background",
+            "options": [
+                {
+                    "type": "plus2_plus1",
+                    "choices": [
+                        {
+                            "bonus": 2,
+                            "count": 1
+                        },
+                        {
+                            "bonus": 1,
+                            "count": 1,
+                            "mustBeDifferentFromBonus": 2
+                        }
+                    ]
+                },
+                {
+                    "type": "plus1_each_suggested",
+                    "basedOn": "abilityscores"
+                }
+            ]
+        }
+    },
+    "classDetails": {
+        "id": 1,
+        "name": "Barbarian",
+        "slug": "barbarian",
+        "description": "A fierce warrior who relies on raw strength and primal fury to overcome enemies.",
+        "role": "melee",
+        "hitDie": 12,
+        "primaryAttributes": [
+            "STR"
+        ],
+        "recommendedSkills": [
+            "Athletics",
+            "Survival",
+            "Intimidation"
+        ],
+        "savingThrows": [
+            "STR",
+            "CON"
+        ],
+        "spellcasting": null,
+        "skillProficiencyChoices": {
+            "choose": 2,
+            "options": [
+                "Animal Handling",
+                "Athletics",
+                "Intimidation",
+                "Nature",
+                "Perception",
+                "Survival"
+            ]
+        },
+        "weaponProficiencies": [
+            "Simple Weapons",
+            "Martial Weapons"
+        ],
+        "armorTraining": [
+            "Light Armor",
+            "Medium Armor",
+            "Shield"
+        ],
+        "startingEquipmentOptions": [
+            {
+                "label": "A",
+                "items": [
+                    "Greataxe",
+                    "4 Handaxes",
+                    "Explorer's Pack",
+                    "15 GP"
+                ]
+            },
+            {
+                "label": "B",
+                "items": [
+                    "75 GP"
+                ]
+            }
+        ],
+        "equipmentOptions": [
+            "Greataxe, 4 Handaxes, Explorer's Pack, and 15 GP",
+            "75 GP"
+        ],
+        "subclasses": [
+            "Berserker",
+            "Wild Heart",
+            "World Tree",
+            "Zealot"
+        ],
+        "featuresByLevel": [
+            {
+                "level": 1,
+                "features": [
+                    {
+                        "name": "Rage",
+                        "description": "You can imbue yourself with a primal power called Rage, a force that grants you extraordinary might and resilience. You can enter it as a Bonus Action if you aren’t wearing Heavy armor.\n\nYou can enter your Rage the number of times shown for your Barbarian level in the Rages column of the Barbarian Features table. You regain one expended use when you finish a Short Rest, and you regain all expended uses when you finish a Long Rest.\n\nWhile active, your Rage follows the rules below.\n\nDamage Resistance. You have Resistance to Bludgeoning, Piercing, and Slashing damage.\n\nRage Damage. When you make an attack using Strength—with either a weapon or an Unarmed Strike—and deal damage to the target, you gain a bonus to the damage that increases as you gain levels as a Barbarian, as shown in the Rage Damage column of the Barbarian Features table.\n\nStrength Advantage. You have Advantage on Strength checks and Strength saving throws.\n\nNo Concentration or Spells. You can’t maintain Concentration, and you can’t cast spells.\n\nDuration. The Rage lasts until the end of your next turn, and it ends early if you don Heavy armor or have the Incapacitated condition. If your Rage is still active on your next turn, you can extend the Rage for another round by doing one of the following:\n\nMake an attack roll against an enemy.\nForce an enemy to make a saving throw.\nTake a Bonus Action to extend your Rage.\nEach time the Rage is extended, it lasts until the end of your next turn. You can maintain a Rage for up to 10 minutes."
+                    },
+                    {
+                        "name": "Unarmored Defense",
+                        "description": "While you aren’t wearing any armor, your base Armor Class equals 10 plus your Dexterity and Constitution modifiers. You can use a Shield and still gain this benefit."
+                    },
+                    {
+                        "name": "Weapon Mastery",
+                        "description": "Your training with weapons allows you to use the mastery properties of two kinds of Simple or Martial Melee weapons of your choice, such as Greataxes and Handaxes. Whenever you finish a Long Rest, you can practice weapon drills and change one of those weapon choices.\n\nWhen you reach certain Barbarian levels, you gain the ability to use the mastery properties of more kinds of weapons, as shown in the Weapon Mastery column of the Barbarian Features table."
+                    }
+                ]
+            }
+        ]
+    },
+    "speciesDetails": {
+        "id": 8,
+        "name": "Orc",
+        "slug": "orc",
+        "description": "Orcs trace their creation to Gruumsh and retain gifts of endurance, determination, and darkvision suited to wandering harsh lands and facing dangerous monsters.",
+        "creatureType": "Humanoid",
+        "size": "Medium",
+        "speed": 30,
+        "specialTraits": [
+            {
+                "name": "Adrenaline Rush",
+                "description": "You can take the Dash action as a Bonus Action. When you do so, you gain a number of Temporary Hit Points equal to your Proficiency Bonus. You can use this trait a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Short or Long Rest."
+            },
+            {
+                "name": "Darkvision",
+                "description": "You have Darkvision with a range of 120 feet."
+            },
+            {
+                "name": "Relentless Endurance",
+                "description": "When you are reduced to 0 Hit Points but not killed outright, you can drop to 1 Hit Point instead. Once you use this trait, you cannot do so again until you finish a Long Rest."
+            }
+        ],
+        "subspecies": []
+    },
+    "backgroundDetails": {
+        "id": 16,
+        "name": "Soldier",
+        "slug": "soldier",
+        "description": "You began training for war as soon as you reached adulthood and carry precious few memories of life before you took up arms. Battle is in your blood. Sometimes you catch yourself reflexively performing the basic fighting exercises you learned first. Eventually, you put that training to use on the battlefield, protecting the realm by waging war.",
+        "abilityScores": [
+            "STR",
+            "DEX",
+            "CON"
+        ],
+        "feat": "Savage Attacker",
+        "skillProficiencies": [
+            "Athletics",
+            "Intimidation"
+        ],
+        "toolProficiency": "One kind of Gaming Set",
+        "equipmentOptions": [
+            "Spear, Shortbow, 20 Arrows, Gaming Set (same as above), Healer's Kit, Quiver, Traveler's Clothes, 14 GP",
+            "50 GP"
+        ]
+    }
+}

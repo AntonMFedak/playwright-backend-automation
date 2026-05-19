@@ -7,7 +7,6 @@ export async function getToken(request: APIRequestContext): Promise<APIResponse>
             password: process.env.API_PASSWORD
         }
     });
-    //const token: string = (await tokenResponse.json()).token;
     return tokenResponse;
 }
 
@@ -18,6 +17,5 @@ export async function getTokenBadRequest(request: APIRequestContext): Promise<AP
             password: process.env.API_PASSWORD
         }
     });
-    //const token: string = (await tokenResponse.json()).token;
     return tokenResponse;
 }

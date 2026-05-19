@@ -4,12 +4,19 @@ export enum Tags {
     GET = '@get',
     POST = '@post',
     PATCH = '@patch',
+    PUT = '@put',
+    UPDATE = '@update',
     DELETE = '@delete',
     GET_LIST = '@get-list',
     GET_DETAIL = '@get-detail',
     ATTRIBUTES = '@attributes',
     CREATE = '@create',
     CHARACTER = '@character',
+    ABILITY_SCORES = '@ability-scores',
+    EQUIPMENT = '@equipment',
+    CURRENCY = '@currency',
+    CLASS_EQUIPMENT_PACKAGE = '@class-equipment-package',
+    BACKGROUND_EQUIPMENT_PACKAGE = '@background-equipment-package',
     BARBARIAN = '@barbarian',
     BARD = '@bard',
     CLERIC = '@cleric',
@@ -21,7 +28,8 @@ export enum Tags {
     ROGUE = '@rogue',
     SORCERER = '@sorcerer',
     WARLOCK = '@warlock',
-    WIZARD = '@wizard'
+    WIZARD = '@wizard',
+    UNKNOWN_CLASS = '@unknown-class'
 }
 
 export enum CharacterClasses {

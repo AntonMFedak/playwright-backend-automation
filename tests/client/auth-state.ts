@@ -1,28 +1,29 @@
 import { APIRequestContext } from '@playwright/test';
 import { getToken } from './token-client';
 import { expectTokenBeString, expectTokenNotEmpty } from '../snippets/token-validators';
+import { expectStatusCodeOk } from '../snippets/status-code-validators';
 
 class AuthState {
     private token: string | null = null;
 
     async authentication(request: APIRequestContext): Promise<string> {
+        // Check whether authentication data is loaded in environment variables
         console.log('Username check:', process.env.API_USERNAME ? 'LOADED' : 'MISSING');
         console.log('Password check:', process.env.API_PASSWORD ? 'LOADED' : 'MISSING');
         if (!this.token) {
-            // 1. Get the response exactly like your working test
-            const response = await getToken(request);
+            // Get the token from the API
+            const responseToken = await getToken(request);
 
-            // 2. Immediate Status Check (Stops the 400 from proceeding)
-            if (!response.ok()) {
-                const errorBody = await response.text();
-                throw new Error(`Login Failed: ${response.status()} - ${errorBody}`);
+            // Status Check (Stops the 400 from proceeding)
+            if (!responseToken.ok()) {
+                const errorBody = await responseToken.text();
+                throw new Error(`Login Failed: ${responseToken.status()} - ${errorBody}`);
             }
 
-            // 3. Parse and assign
-            const body = await response.json();
+            const body = await responseToken.json();
             this.token = body.token; 
 
-            // 4. Validate the assigned result
+            await expectStatusCodeOk(responseToken);
             await expectTokenNotEmpty(this.token!);
             await expectTokenBeString(this.token!);
         }

@@ -3,7 +3,7 @@ import { authState } from '../client/auth-state';
 import { createCharacter, getListOfCharacters } from '../client/character-client';
 import { BARBARIAN_CHARACTER_DATA, CREATE_CHARACTER_DATA, ROGUE_CHARACTER_DATA } from '../data/character-data';
 import { expectStatusCodeCreated } from '../snippets/status-code-validators';
-import { expectValidCreateCharacterDataResponse, expectValidCreateCharacterSchema } from '../snippets/character-validators';
+import { expectDraftCharacterStatus, expectInProgressCharacterStatus, expectValidCreateCharacterDataResponse, expectValidCreateCharacterSchema } from '../snippets/character-validators';
 import { Tags } from '../data/enums';
 import { CLASS_TAG_MAP } from '../data/mappings';
 import { CreateCharacterSchema, existantCharactersList } from '../schemas/character-schema';
@@ -69,8 +69,15 @@ test.describe('Bulk Character Creation', () => {
             );
 
             await expectStatusCodeCreated(characterResponse);
-            await expectValidCreateCharacterSchema(characterResponse, characterData);
-            await expectValidCreateCharacterDataResponse(characterResponse, characterData);
+
+            const createdCharacter = await characterResponse.json();
+            if (createdCharacter.classId == null || createdCharacter.speciesId == null || createdCharacter.backgroundId == null) {
+                await expectDraftCharacterStatus(createdCharacter);
+            } else {
+                await expectValidCreateCharacterSchema(characterResponse, characterData);
+                await expectValidCreateCharacterDataResponse(characterResponse, characterData);
+                await expectInProgressCharacterStatus(createdCharacter);   
+            }             
         });
     }
 });

@@ -1,7 +1,7 @@
 import { test as setup } from '@playwright/test';
 import { authState } from './client/auth-state';
 import { getListOfCharacters } from './client/character-client';
-import { GetCharacterListResponseSchema } from './schemas/character-schema';
+import { CharacterListResponseSchema } from './schemas/character-schema';
 import { Tags } from './data/enums';
 import { expectTokenBeString, expectTokenNotEmpty } from './snippets/token-validators';
 import { expectStatusCodeOk } from './snippets/status-code-validators';
@@ -14,7 +14,7 @@ setup('Fetch and save character IDs to ENV', {tag: Tags.GLOBAL_SETUP}, async ({ 
     const characterListResponse = await getListOfCharacters(request, token);
     await expectStatusCodeOk(characterListResponse);
 
-    const characterList: GetCharacterListResponseSchema[] = await characterListResponse.json();
+    const characterList: CharacterListResponseSchema[] = await characterListResponse.json();
 
     const characterIds = characterList.map(character => ({id: character.id, name: character.name}));
     console.log('Fetched Character IDs:', characterIds);

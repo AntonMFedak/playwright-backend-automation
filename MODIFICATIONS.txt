@@ -1,0 +1,18 @@
+1. tests/client/auth-state.ts
+Allows share token value between multiple spec files.
+
+2. tests/global-setup.ts
+Fetches the list of existant characters and stores an ID and NAME in the environment variable.
+Alows sharing of existant characters IDs between multiple spec files.
+NOTE: another solution would be to store information in a JSON file.
+=> playwright.config.js:
+-> fully parallel: false, worker: 1
+-> defining setup project and making it as a dependency for other projects
+
+3. tests/schemas
+Schemas for attributes and characters response validations
+Playwright Asymetric Schema for Character Detail Schema validation
+
+4. tests/data/enums.ts & tests/data/mappings.ts
+Setting enums for tests tags and character classes ID.
+Mapping character classes values to their corresponding tags, allowing dynamic tag allocation based on the character being created.
