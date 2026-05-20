@@ -1,5 +1,5 @@
 import { APIRequestContext } from "@playwright/test";
-import { CreateCharacterSchema, ResolveBackgroundEquipmentPackageChoiceSchema, ResolveClassEquipmentPackageChoiceSchema, UpdateCharacterAbilityScoresSchema } from "../schemas/character-schema";
+import { CreateCharacterSchema, ResolveBackgroundEquipmentPackageChoiceSchema, ResolveClassEquipmentPackageChoiceSchema, SkillProficienciesUpdateSchema, UpdateCharacterAbilityScoresSchema } from "../schemas/character-schema";
 import { CHARACTER_BACKGROUND_EQUIPMENT_PACKAGE_CHOICE_DATA, CHARACTER_CLASS_EQUIPMENT_PACKAGE_CHOICE_DATA } from "../data/character-data";
 
 /** CHARACTER CREATION / RETRIEVAL / DELETION **/
@@ -57,6 +57,19 @@ export async function updateCharacterAbilityScores(
     const response = await request.put(`/api/characters/${characterId}/ability-scores`, {
         headers: {Authorization: `Bearer ${token}`},
         data: abilityScoresData,
+    });
+    return response;
+}
+
+export async function updateSkillProficiencies(
+    request: APIRequestContext,
+    token: string,
+    characterId: number,
+    skillProficienciesData: SkillProficienciesUpdateSchema
+) {
+    const response = await request.patch(`/api/characters/${characterId}`, {
+        headers: {Authorization: `Bearer ${token}`},
+        data: skillProficienciesData,
     });
     return response;
 }

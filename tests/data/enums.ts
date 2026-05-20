@@ -10,6 +10,7 @@ export enum Tags {
     GET_LIST = '@get-list',
     GET_DETAIL = '@get-detail',
     ATTRIBUTES = '@attributes',
+    SKILL_PROFICIENCIES = '@skill-proficiencies',
     CREATE = '@create',
     CHARACTER = '@character',
     ABILITY_SCORES = '@ability-scores',
@@ -45,4 +46,25 @@ export enum CharacterClasses {
     SORCERER = 10,
     WARLOCK = 11,
     WIZARD = 12
+}
+
+export enum SkillProficiencies {
+    ATHLETICS = 'Athletics',
+    ACROBATICS = 'Acrobatics',
+    SLEIGHT_OF_HAND = 'Sleight of Hand',
+    STEALTH = 'Stealth',
+    ARCANA = 'Arcana',
+    HISTORY = 'History',
+    INVESTIGATION = 'Investigation',
+    NATURE = 'Nature',
+    RELIGION = 'Religion',
+    ANIMAL_HANDLING = 'Animal Handling',
+    INSIGHT = 'Insight',
+    MEDICINE = 'Medicine',
+    PERCEPTION = 'Perception',
+    SURVIVAL = 'Survival',
+    DECEPTION = 'Deception',
+    INTIMIDATION = 'Intimidation',
+    PERFORMANCE = 'Performance',
+    PERSUASION = 'Persuasion'
 }

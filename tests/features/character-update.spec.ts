@@ -2,9 +2,9 @@ import test from "@playwright/test";
 import { authState } from "../client/auth-state";
 import { existantCharactersList } from "../schemas/character-schema";
 import { Tags } from "../data/enums";
-import { resolveBackgroundEquipmentPackageChoice, resolveClassEquipmentPackageChoice, updateCharacterAbilityScores, updateCharacterCurrency, updateCharacterEquipment } from "../client/character-client";
+import { resolveBackgroundEquipmentPackageChoice, resolveClassEquipmentPackageChoice, updateCharacterAbilityScores, updateCharacterCurrency, updateCharacterEquipment, updateSkillProficiencies } from "../client/character-client";
 import { expectStatusCodeCreated, expectStatusCodeOk } from "../snippets/status-code-validators";
-import { CHARACTER_BACKGROUND_EQUIPMENT_PACKAGE_CHOICE_DATA, CHARACTER_CLASS_EQUIPMENT_PACKAGE_CHOICE_DATA, CHARACTER_CURRENCY_DATA, CHARACTER_EQUIPMENT_DATA, UPDATE_CHARACTER_ABILITY_SCORES_DATA } from "../data/character-data";
+import { CHARACTER_BACKGROUND_EQUIPMENT_PACKAGE_CHOICE_DATA, CHARACTER_CLASS_EQUIPMENT_PACKAGE_CHOICE_DATA, CHARACTER_CURRENCY_DATA, CHARACTER_EQUIPMENT_DATA, SKILL_PROFICIENCIES_DATA, UPDATE_CHARACTER_ABILITY_SCORES_DATA } from "../data/character-data";
 
 test('Update Character Ability Scores', {tag: [Tags.PUT, Tags.UPDATE, Tags.CHARACTER, Tags.ABILITY_SCORES]}, async ({ request }) => {
      const token = await authState.authentication(request);
@@ -25,6 +25,27 @@ test('Update Character Ability Scores', {tag: [Tags.PUT, Tags.UPDATE, Tags.CHARA
      test.fail(updateAbilityScoresResponse.status() == 400, 'Failed to update character ability scores, invalid payload');
 
      await expectStatusCodeOk(updateAbilityScoresResponse);
+});
+
+test('Update Character Skill Proficiencies', {tag: [Tags.PATCH, Tags.UPDATE, Tags.CHARACTER, Tags.SKILL_PROFICIENCIES]}, async ({ request }) => {
+    const token = await authState.authentication(request);
+
+    const existantCharacters: existantCharactersList[] = await JSON.parse(process.env.GLOBAL_CHARACTER_IDS as string);
+
+    test.skip(existantCharacters.length === 0, 'No characters found to test Update Character');
+
+    const characterId = existantCharacters[0].id;
+
+    const updateSkillProficienciesResponse = await updateSkillProficiencies(
+        request,
+        token,
+        characterId,
+        SKILL_PROFICIENCIES_DATA
+    );
+
+    test.fail(updateSkillProficienciesResponse.status() == 400, 'Failed to update character skill proficiencies, invalid payload');
+
+    await expectStatusCodeOk(updateSkillProficienciesResponse);
 });
 
 test('Resolve Class Equipment Package Choice', {tag: [Tags.POST, Tags.UPDATE, Tags.CHARACTER, Tags.CLASS_EQUIPMENT_PACKAGE]}, async ({ request }) => {

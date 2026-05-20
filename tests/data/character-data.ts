@@ -3,8 +3,10 @@ import {
     CreateCharacterSchema,
     ResolveClassEquipmentPackageChoiceSchema,
     ResolveBackgroundEquipmentPackageChoiceSchema,
-    UpdateCharacterAbilityScoresSchema
+    UpdateCharacterAbilityScoresSchema,
+    SkillProficienciesUpdateSchema
 } from "../schemas/character-schema";
+import { SkillProficiencies } from "./enums";
 
 /** INDIVIDUAL CHARACTER CREATION DATA **/
 export const ROGUE_CHARACTER_DATA: CreateCharacterSchema = {
@@ -61,6 +63,10 @@ export const UPDATE_CHARACTER_ABILITY_SCORES_DATA: UpdateCharacterAbilityScoresS
         }
     }
 };
+
+/** SKILL PROFICIENCIES DATA **/
+export const SKILL_PROFICIENCIES_DATA: SkillProficienciesUpdateSchema = [SkillProficiencies.INSIGHT, SkillProficiencies.STEALTH, SkillProficiencies.INTIMIDATION, SkillProficiencies.ATHLETICS];
+
 
 /** CHARACTER CLASS EQUIPMENT PACKAGE CHOICE DATA **/
 export const CHARACTER_CLASS_EQUIPMENT_PACKAGE_CHOICE_DATA: ResolveClassEquipmentPackageChoiceSchema = {

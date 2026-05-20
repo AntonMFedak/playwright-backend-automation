@@ -40,6 +40,8 @@ export type UpdateCharacterAbilityScoresSchema = {
     }
 }
 
+export type SkillProficienciesUpdateSchema = string[];
+
 export type ResolveClassEquipmentPackageChoiceSchema = {
     optionLabel: string
 }
