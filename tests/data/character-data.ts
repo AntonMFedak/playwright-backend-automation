@@ -1,7 +1,8 @@
 import {
     CharacterEquipmentSchema,
     CreateCharacterSchema,
-    ResolveEquipmentPackageChoiceSchema,
+    ResolveClassEquipmentPackageChoiceSchema,
+    ResolveBackgroundEquipmentPackageChoiceSchema,
     UpdateCharacterAbilityScoresSchema
 } from "../schemas/character-schema";
 
@@ -61,9 +62,14 @@ export const UPDATE_CHARACTER_ABILITY_SCORES_DATA: UpdateCharacterAbilityScoresS
     }
 };
 
-/** CHARACTER EQUIPMENT PACKAGE CHOICE DATA **/
-export const CHARACTER_EQUIPMENT_PACKAGE_CHOICE_DATA: ResolveEquipmentPackageChoiceSchema = {
+/** CHARACTER CLASS EQUIPMENT PACKAGE CHOICE DATA **/
+export const CHARACTER_CLASS_EQUIPMENT_PACKAGE_CHOICE_DATA: ResolveClassEquipmentPackageChoiceSchema = {
     optionLabel: "A"
+};
+
+/** CHARACTER BACKGROUNDEQUIPMENT PACKAGE CHOICE DATA **/
+export const CHARACTER_BACKGROUND_EQUIPMENT_PACKAGE_CHOICE_DATA: ResolveBackgroundEquipmentPackageChoiceSchema = {
+    optionIndex: 1
 };
 
 /** CHARACTER INDIVIDUAL EQUIPMENT DATA **/

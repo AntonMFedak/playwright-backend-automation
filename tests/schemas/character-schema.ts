@@ -40,8 +40,12 @@ export type UpdateCharacterAbilityScoresSchema = {
     }
 }
 
-export type ResolveEquipmentPackageChoiceSchema = {
+export type ResolveClassEquipmentPackageChoiceSchema = {
     optionLabel: string
+}
+
+export type ResolveBackgroundEquipmentPackageChoiceSchema = {
+    optionIndex: number
 }
 
 export type CharacterEquipmentSchema = {

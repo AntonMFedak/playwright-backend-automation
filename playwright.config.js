@@ -24,13 +24,19 @@ export default defineConfig({
   projects: [
     // Setup Project
     {
-      name: 'setup',
+      name: '01-setup',
       // Looks for the setup file
       testMatch: /global\.setup\.ts/, 
     },
     {
-      name: 'backend-testing',
-      dependencies: ['setup'], // This project depends on the setup project
+      name: '02-attributes-character-management',
+      testIgnore: /tests\/features\/character-delete\.spec\.ts/, // Ignore the character deletion test in this project
+      dependencies: ['01-setup'], // This project depends on the setup project
+    },
+    {
+      name: '03-character-deletion',
+      testMatch: /tests\/features\/character-delete\.spec\.ts/,
+      dependencies: ['02-attributes-character-management'], // This project depends on the setup project
     },
   ],
 });

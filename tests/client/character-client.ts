@@ -1,6 +1,6 @@
 import { APIRequestContext } from "@playwright/test";
-import { CreateCharacterSchema, ResolveEquipmentPackageChoiceSchema, UpdateCharacterAbilityScoresSchema } from "../schemas/character-schema";
-import { CHARACTER_EQUIPMENT_PACKAGE_CHOICE_DATA } from "../data/character-data";
+import { CreateCharacterSchema, ResolveBackgroundEquipmentPackageChoiceSchema, ResolveClassEquipmentPackageChoiceSchema, UpdateCharacterAbilityScoresSchema } from "../schemas/character-schema";
+import { CHARACTER_BACKGROUND_EQUIPMENT_PACKAGE_CHOICE_DATA, CHARACTER_CLASS_EQUIPMENT_PACKAGE_CHOICE_DATA } from "../data/character-data";
 
 /** CHARACTER CREATION / RETRIEVAL / DELETION **/
 export async function createCharacter(
@@ -65,11 +65,11 @@ export async function resolveClassEquipmentPackageChoice(
     request: APIRequestContext,
     token: string,
     characterId: number,
-    optionLabel: ResolveEquipmentPackageChoiceSchema
+    optionLabel: ResolveClassEquipmentPackageChoiceSchema
 ){
     const response = await request.post(`/api/characters/${characterId}/equipment/class-choice`, {
         headers: {Authorization: `Bearer ${token}`},
-        data: CHARACTER_EQUIPMENT_PACKAGE_CHOICE_DATA
+        data: CHARACTER_CLASS_EQUIPMENT_PACKAGE_CHOICE_DATA
     });
     return response;
 }
@@ -78,11 +78,11 @@ export async function resolveBackgroundEquipmentPackageChoice(
     request: APIRequestContext,
     token: string,
     characterId: number,
-    optionLabel: ResolveEquipmentPackageChoiceSchema
+    optionLabel: ResolveBackgroundEquipmentPackageChoiceSchema
 ){
     const response = await request.post(`/api/characters/${characterId}/equipment/background-choice`, {
         headers: {Authorization: `Bearer ${token}`},
-        data: CHARACTER_EQUIPMENT_PACKAGE_CHOICE_DATA
+        data: CHARACTER_BACKGROUND_EQUIPMENT_PACKAGE_CHOICE_DATA
     });
     return response;
 }

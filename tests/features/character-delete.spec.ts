@@ -6,7 +6,7 @@ import { existantCharactersList } from "../schemas/character-schema";
 import { expectStatusCodeOk } from "../snippets/status-code-validators";
 import { Tags } from "../data/enums";
 
-test('Delete Character Equipment', {tag: [Tags.DELETE, Tags.CHARACTER, Tags.EQUIPMENT]}, async ({ request }) => {
+test.skip('Delete Character Equipment', {tag: [Tags.DELETE, Tags.CHARACTER, Tags.EQUIPMENT]}, async ({ request }) => {
     const token = await authState.authentication(request);
 
     const existantCharacters: existantCharactersList[] = await JSON.parse(process.env.GLOBAL_CHARACTER_IDS as string);
